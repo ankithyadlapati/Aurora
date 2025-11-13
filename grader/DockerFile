@@ -1,0 +1,10 @@
+FROM golang:1.21-alpine AS builder
+WORKDIR /app
+COPY . .
+RUN go build -o /bin/runner ./cmd/runner
+
+
+FROM alpine:3.18
+COPY --from=builder /bin/runner /bin/runner
+EXPOSE 8080
+ENTRYPOINT ["/bin/runner"]
