@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+backend:
+build: ./backend
+ports:
+- '8000:8000'
+environment:
+- GRADER_URL=http://grader:8080
+grader:
+build: ./grader
+ports:
+- '8080:8080'
+frontend:
+build: ./frontend
+ports:
+- '3000:3000'
